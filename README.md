@@ -140,55 +140,7 @@ rural-health-pipeline/
 
 ---
 
-## 🚀 How to Run Locally
 
-### Prerequisites
-- Python 3.11+
-- Git
-
-### Step 1 — Clone the repository
-```bash
-git clone https://github.com/YOUR_USERNAME/rural-health-pipeline.git
-cd rural-health-pipeline
-```
-
-### Step 2 — Create virtual environment
-```bash
-# Mac
-python3 -m venv venv
-source venv/bin/activate
-
-# Windows
-python -m venv venv
-venv\Scripts\activate
-```
-
-### Step 3 — Install dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### Step 4 — Generate sample data
-```bash
-python -m ingestion.validate_load
-```
-
-### Step 5 — Run dbt transformations
-```bash
-cd health_dbt
-dbt run
-dbt test
-cd ..
-```
-
-### Step 6 — Launch dashboard
-```bash
-streamlit run app/dashboard.py
-```
-
-Open `http://localhost:8501` in your browser.
-
----
 
 ## 📥 How to Add Your Own Data
 
