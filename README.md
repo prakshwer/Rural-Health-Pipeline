@@ -12,7 +12,7 @@
 
 ## 🌐 Live Demo
 
-**[👉 Click here to open the live app](https://prakshwer-rural-health-pipeline-app-dashboard.streamlit.app)**
+**[👉 Click here to open the live app](https://rural-health-pipeline-b7tpkhxc3zuqfqkgxp6grm.streamlit.app/)**
 
 > Type any village name, generate patient data, upload a CSV, or connect a Google Sheet — and see live disease outbreak alerts and health worker performance metrics instantly.
 
