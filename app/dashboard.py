@@ -419,47 +419,61 @@ with tab5:
 
     with col1:
         st.markdown("#### 👶 Children Under 5")
-        if not children.empty:
-    fig9 = px.bar(children, x='cases', y='village',
-                  color='diagnosis', orientation='h',
-                  template="plotly_dark",
-                  color_discrete_sequence=px.colors.qualitative.Pastel)
-    fig9.update_layout(
-        paper_bgcolor="#0d1520",
-        plot_bgcolor="#0d1520",
-        height=350
-    )
-    st.plotly_chart(fig9, use_container_width=True)
-else:
-    st.info("No data for children under 5 yet.")
+        if len(children) > 0:
+            fig9 = px.bar(children, x='cases', y='village',
+                          color='diagnosis', orientation='h',
+                          template="plotly_dark",
+                          color_discrete_sequence=px.colors.qualitative.Pastel)
+            fig9.update_layout(paper_bgcolor="#0d1520", plot_bgcolor="#0d1520", height=350)
+            st.plotly_chart(fig9, use_container_width=True)
+        else:
+            st.info("No data yet")
+
     with col2:
         st.markdown("#### 👴 Elderly Patients (60+)")
-        if not elderly.empty:
-    fig10 = px.bar(elderly, x='cases', y='village',
-                   color='diagnosis', orientation='h',
-                   template="plotly_dark",
-                   color_discrete_sequence=px.colors.qualitative.Set3)
-    fig10.update_layout(
-        paper_bgcolor="#0d1520",
-        plot_bgcolor="#0d1520",
-        height=350
-    )
-    st.plotly_chart(fig10, use_container_width=True)
-else:
-    st.info("No data for elderly patients yet.")
+        if len(elderly) > 0:
+            fig10 = px.bar(elderly, x='cases', y='village',
+                           color='diagnosis', orientation='h',
+                           template="plotly_dark",
+                           color_discrete_sequence=px.colors.qualitative.Set3)
+            fig10.update_layout(paper_bgcolor="#0d1520", plot_bgcolor="#0d1520", height=350)
+            st.plotly_chart(fig10, use_container_width=True)
+        else:
+            st.info("No data yet")
 
     with col3:
         st.markdown("#### 🦠 High Risk Disease Cases")
-       if not high_risk.empty:
-    fig11 = px.bar(high_risk, x='cases', y='village',
-                   color='diagnosis', orientation='h',
-                   template="plotly_dark",
-                   color_discrete_sequence=px.colors.qualitative.Set2)
-    fig11.update_layout(
-        paper_bgcolor="#0d1520",
-        plot_bgcolor="#0d1520",
-        height=350
-    )
-    st.plotly_chart(fig11, use_container_width=True)
-else:
-    st.info("No high risk disease data available yet.")
+        if len(high_risk) > 0:
+            fig11 = px.bar(high_risk, x='cases', y='village',
+                           color='diagnosis', orientation='h',
+                           template="plotly_dark",
+                           color_discrete_sequence=px.colors.qualitative.Set2)
+            fig11.update_layout(paper_bgcolor="#0d1520", plot_bgcolor="#0d1520", height=350)
+            st.plotly_chart(fig11, use_container_width=True)
+        else:
+            st.info("No data yet")
+
+    age_df = pd.read_sql("""
+        SELECT
+            CASE
+                WHEN age < 5  THEN 'Under 5'
+                WHEN age < 18 THEN 'Child 5-17'
+                WHEN age < 60 THEN 'Adult 18-59'
+                ELSE 'Senior 60+'
+            END as age_group,
+            diagnosis, COUNT(*) as cases
+        FROM raw_patients
+        GROUP BY age_group, diagnosis
+        ORDER BY cases DESC
+    """, engine)
+
+    if len(age_df) > 0:
+        fig12 = px.sunburst(age_df, path=['age_group', 'diagnosis'],
+                            values='cases',
+                            title="Disease Distribution by Age Group",
+                            template="plotly_dark",
+                            color_discrete_sequence=px.colors.qualitative.Set2)
+        fig12.update_layout(paper_bgcolor="#0d1520")
+        st.plotly_chart(fig12, use_container_width=True)
+    else:
+        st.info("No data yet")
