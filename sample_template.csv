@@ -1,0 +1,4 @@
+patient_id,name,age,gender,village,visit_date,diagnosis,temperature_c,systolic_bp,diastolic_bp,blood_glucose,referred_to_hospital,health_worker_id,health_worker_name,is_child_under_5,is_elderly,is_high_risk_disease,visit_month,visit_week,created_at
+A1B2C3D4,Priya Sharma,34,Female,Purulia,2024-01-15,Malaria,39.2,115,78,88,False,HW101,Ramesh Das,False,False,True,2024-01,2024-W03,2024-01-15 10:30:00
+B2C3D4E5,Ramesh Das,67,Male,Bankura,2024-01-16,Diabetes,37.1,155,95,210,True,HW102,Sunita Mondal,False,True,False,2024-01,2024-W03,2024-01-16 11:00:00
+C3D4E5F6,Sunita Roy,4,Female,Jhargram,2024-01-17,Malnutrition,37.8,100,70,75,False,HW103,Amit Ghosh,True,False,False,2024-01,2024-W03,2024-01-17 09:15:00

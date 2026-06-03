@@ -1,0 +1,11 @@
+health_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: sqlite
+      threads: 1
+      database: "database"
+      schema: "main"
+      schemas_and_paths:
+        main: "C:\\rural-health-pipeline\\data\\health.db"
+      schema_directory: "C:\\rural-health-pipeline\\data\\"
