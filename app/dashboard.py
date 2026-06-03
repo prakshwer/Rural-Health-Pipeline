@@ -419,26 +419,47 @@ with tab5:
 
     with col1:
         st.markdown("#### 👶 Children Under 5")
-        fig9 = px.bar(children, x='cases', y='village',
-                      color='diagnosis', orientation='h',
-                      template="plotly_dark",
-                      color_discrete_sequence=px.colors.qualitative.Pastel)
-        fig9.update_layout(paper_bgcolor="#0d1520", plot_bgcolor="#0d1520", height=350)
-        st.plotly_chart(fig9, use_container_width=True)
-
+        if not children.empty:
+    fig9 = px.bar(children, x='cases', y='village',
+                  color='diagnosis', orientation='h',
+                  template="plotly_dark",
+                  color_discrete_sequence=px.colors.qualitative.Pastel)
+    fig9.update_layout(
+        paper_bgcolor="#0d1520",
+        plot_bgcolor="#0d1520",
+        height=350
+    )
+    st.plotly_chart(fig9, use_container_width=True)
+else:
+    st.info("No data for children under 5 yet.")
     with col2:
         st.markdown("#### 👴 Elderly Patients (60+)")
-        fig10 = px.bar(elderly, x='cases', y='village',
-                       color='diagnosis', orientation='h',
-                       template="plotly_dark",
-                       color_discrete_sequence=px.colors.qualitative.Set3)
-        fig10.update_layout(paper_bgcolor="#0d1520", plot_bgcolor="#0d1520", height=350)
-        st.plotly_chart(fig10, use_container_width=True)
+        if not elderly.empty:
+    fig10 = px.bar(elderly, x='cases', y='village',
+                   color='diagnosis', orientation='h',
+                   template="plotly_dark",
+                   color_discrete_sequence=px.colors.qualitative.Set3)
+    fig10.update_layout(
+        paper_bgcolor="#0d1520",
+        plot_bgcolor="#0d1520",
+        height=350
+    )
+    st.plotly_chart(fig10, use_container_width=True)
+else:
+    st.info("No data for elderly patients yet.")
 
     with col3:
         st.markdown("#### 🦠 High Risk Disease Cases")
-        fig11 = px.bar(high_risk, x='cases', y='village',
-                       color='diagnosis', orientation='h',
-                       template="plotly_dark",
-                       color_discrete_sequence=px.colors.qualitative.Bold)
-        fig11.update_l
+       if not high_risk.empty:
+    fig11 = px.bar(high_risk, x='cases', y='village',
+                   color='diagnosis', orientation='h',
+                   template="plotly_dark",
+                   color_discrete_sequence=px.colors.qualitative.Set2)
+    fig11.update_layout(
+        paper_bgcolor="#0d1520",
+        plot_bgcolor="#0d1520",
+        height=350
+    )
+    st.plotly_chart(fig11, use_container_width=True)
+else:
+    st.info("No high risk disease data available yet.")
